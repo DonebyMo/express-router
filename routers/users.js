@@ -29,4 +29,20 @@ router.get("/:id", (req, res) => {
   res.json(user);
 });
 
+router.use(express.json());
+router.post("/", async (req, res) => {
+  users.push(req.body);
+  res.json(users);
+});
+
+router.put("/:id", async (req, res) => {
+  users[req.params.id - 1].name = "Muhammad";
+  res.send(users);
+});
+
+router.delete("/:id", async (req, res) => {
+  users.splice(req.params.id - 1, 1);
+  res.json(users);
+});
+
 module.exports = router;
